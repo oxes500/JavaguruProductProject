@@ -1,4 +1,4 @@
-package lesson15;
+package FinalWork;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
