@@ -44,8 +44,8 @@ public class ProductUI {
                 String productName = sc.nextLine();
 
                 System.out.println("Enter product price:");
-                BigDecimal productPrice = sc.nextBigDecimal();
-                sc.nextLine();
+                Double productRawPrice = Double.parseDouble(sc.nextLine());
+                BigDecimal productPrice = new BigDecimal(productRawPrice);
 
                 System.out.println("Please choose product category:");
                 System.out.println("Enter 1 - vegetable, 2 - fruit, 3 - bread, 4 - drink");
@@ -57,12 +57,13 @@ public class ProductUI {
                 Category category = categorySwitcher.getCategory(numberOfCategory);
 
                 System.out.println("Enter product discount:");
-                String productDiscount = sc.nextLine();
+                Double productRawDiscount = Double.parseDouble(sc.nextLine());
+                BigDecimal productDiscount = new BigDecimal(productRawDiscount);
 
                 System.out.println("Enter product description:");
                 String productDescription = sc.nextLine();
 
-                Product product = new Product(productName, new BigDecimal(String.valueOf(productPrice)), category, new BigDecimal(String.valueOf(productDiscount)), productDescription);
+                Product product = new Product(productName, productPrice, category, productDiscount, productDescription);
 
                 AddProductResponse response = productService.addProduct(product);
                 if (response.isSuccess()) {
@@ -91,7 +92,8 @@ public class ProductUI {
                 String productName = sc.nextLine();
 
                 System.out.println("Enter product price:");
-                BigDecimal productPrice = sc.nextBigDecimal();
+                Double productRawPrice = Double.parseDouble(sc.nextLine());
+                BigDecimal productPrice = new BigDecimal(productRawPrice);
 
                 System.out.println("Please choose product category:");
                 System.out.println("Enter 1 - vegetable, 2 - fruit, 3 - bread, 4 - drink");
@@ -103,12 +105,13 @@ public class ProductUI {
                 Category category = categorySwitcher.getCategory(numberOfCategory);
 
                 System.out.println("Enter product discount:");
-                BigDecimal productDiscount = sc.nextBigDecimal();
+                Double productRawDiscount = Double.parseDouble(sc.nextLine());
+                BigDecimal productDiscount = new BigDecimal(productRawDiscount);
 
                 System.out.println("Enter product description:");
                 String productDescription = sc.nextLine();
 
-                Product product = new Product(productName, new BigDecimal(String.valueOf(productPrice)), category, new BigDecimal(String.valueOf(productDiscount)), productDescription);
+                Product product = new Product(productName, productPrice, category, productDiscount, productDescription);
 
                 UpdateProductResponse response = updateProductService.updateProduct(product, idOfProduct);
                 if (response.isSuccess()) {
