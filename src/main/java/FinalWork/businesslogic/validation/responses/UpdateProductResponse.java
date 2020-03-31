@@ -1,16 +1,14 @@
-package FinalWork;
+package FinalWork.businesslogic.validation.responses;
 
-public class ProductResponse {
+public class UpdateProductResponse {
 
     private boolean success;
     private String errorMessage;
 
-    public ProductResponse(boolean success,
-                           String errorMessage) {
+    public UpdateProductResponse(boolean success, String errorMessage) {
         this.success = success;
         this.errorMessage = errorMessage;
     }
-
 
     public boolean isSuccess() {
         return success;
@@ -19,4 +17,5 @@ public class ProductResponse {
     public String getErrorMessage() {
         return errorMessage;
     }
+
 }
