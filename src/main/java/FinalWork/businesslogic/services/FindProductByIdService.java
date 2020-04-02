@@ -16,7 +16,7 @@ public class FindProductByIdService {
 
     public Product findProductById(int idNumber) {
         if (idValidatorInDb.validateId(idNumber)) {
-            return database.getProductByID(idNumber);
+            return database.getProductByID(idNumber - 1);
         } else {
             return null;
         }
