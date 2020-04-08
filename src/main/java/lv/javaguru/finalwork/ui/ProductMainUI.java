@@ -1,14 +1,18 @@
 package lv.javaguru.finalwork.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
+@Component
 public class ProductMainUI {
 
-    ProductUiAddProduct productUiAddProduct = new ProductUiAddProduct();
-    ProductUiFindProductById productUiFindProductById = new ProductUiFindProductById();
-    ProductUiRemoveProduct productUiRemoveProduct = new ProductUiRemoveProduct();
-    ProductUiUpdateProduct productUiUpdateProduct = new ProductUiUpdateProduct();
-    ProductUiViewList productUiViewList = new ProductUiViewList();
+    @Autowired private ProductUiAddProduct productUiAddProduct;
+    @Autowired private ProductUiFindProductById productUiFindProductById;
+    @Autowired private ProductUiRemoveProduct productUiRemoveProduct;
+    @Autowired private ProductUiUpdateProduct productUiUpdateProduct;
+    @Autowired private ProductUiViewList productUiViewList;
 
     public void execute() {
         while (true) {

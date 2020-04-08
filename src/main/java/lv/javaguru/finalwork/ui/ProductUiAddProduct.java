@@ -7,18 +7,21 @@ import lv.javaguru.finalwork.businesslogic.validation.responses.AddProductRespon
 import lv.javaguru.finalwork.database.ProductDatabase;
 import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
+@Component
 public class ProductUiAddProduct {
 
-    ProductDatabase database = new ProductDatabase();
-    ProductValidator productValidator = new ProductValidator();
-    AddProductService productService = new AddProductService(database, productValidator);
-    Scanner sc = new Scanner(System.in);
+    @Autowired ProductDatabase database;
+    @Autowired ProductValidator productValidator;
+    @Autowired AddProductService productService;
 
     public void addProduct() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Enter product name:");
         String productName = sc.nextLine();
 
