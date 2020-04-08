@@ -3,17 +3,20 @@ package lv.javaguru.finalwork.ui;
 import lv.javaguru.finalwork.businesslogic.services.FindProductByIdService;
 import lv.javaguru.finalwork.businesslogic.validation.IdValidatorInDb;
 import lv.javaguru.finalwork.database.ProductDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class ProductUiFindProductById {
 
-    Scanner sc = new Scanner(System.in);
-    ProductDatabase database = new ProductDatabase();
-    IdValidatorInDb idValidatorInDb = new IdValidatorInDb(database);
-    FindProductByIdService findProductByIdService = new FindProductByIdService(idValidatorInDb, database);
+    @Autowired private ProductDatabase database;
+    @Autowired private IdValidatorInDb idValidatorInDb;
+    @Autowired private FindProductByIdService findProductByIdService;
 
     public void findProductById() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Please enter ID of product to find it:");
         int idOfProduct = Integer.parseInt(sc.nextLine());
         if (findProductByIdService.findProductById(idOfProduct) != null) {

@@ -7,18 +7,21 @@ import lv.javaguru.finalwork.businesslogic.validation.responses.UpdateProductRes
 import lv.javaguru.finalwork.database.ProductDatabase;
 import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
+@Component
 public class ProductUiUpdateProduct {
 
-    Scanner sc = new Scanner(System.in);
-    ProductDatabase database = new ProductDatabase();
-    IdValidatorInDb idValidatorInDb = new IdValidatorInDb(database);
-    UpdateProductService updateProductService = new UpdateProductService(idValidatorInDb, database);
+    @Autowired private ProductDatabase database;
+    @Autowired private IdValidatorInDb idValidatorInDb;
+    @Autowired private UpdateProductService updateProductService;
 
     public void updateProduct() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Please enter ID of product to update it:");
         int idOfProduct = Integer.parseInt(sc.nextLine());
 
