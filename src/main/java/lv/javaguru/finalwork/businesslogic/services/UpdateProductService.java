@@ -1,8 +1,7 @@
 package lv.javaguru.finalwork.businesslogic.services;
 
-import lv.javaguru.finalwork.businesslogic.validation.IdValidatorInDb;
 import lv.javaguru.finalwork.businesslogic.validation.responses.UpdateProductResponse;
-import lv.javaguru.finalwork.database.ProductDatabase;
+import lv.javaguru.finalwork.database.JDBCProductRepository;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,18 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class UpdateProductService {
 
-    private IdValidatorInDb idValidatorInDb;
-    private ProductDatabase productDatabase;
+    private JDBCProductRepository database;
 
     @Autowired
-    public UpdateProductService(IdValidatorInDb idValidatorInDb, ProductDatabase productDatabase) {
-        this.idValidatorInDb = idValidatorInDb;
-        this.productDatabase = productDatabase;
+    public UpdateProductService(JDBCProductRepository database) {
+        this.database = database;
     }
 
     public UpdateProductResponse updateProduct(Product product, int id) {
-        if (idValidatorInDb.validateId(id)) {
-            productDatabase.updateProduct(product);
+        if (true) {
+            database.updateProduct(product);
             return new UpdateProductResponse(true, "Update is success!");
         } else {
             return new UpdateProductResponse(false, "Id is not found!");

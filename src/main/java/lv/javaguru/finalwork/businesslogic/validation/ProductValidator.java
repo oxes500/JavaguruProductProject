@@ -21,6 +21,7 @@ public class ProductValidator {
         validationRules.add(new ProductDescriptionValidationRule());
         validationRules.add(new ProductDiscountValidationRule());
         validationRules.add(new ProductPriceValidationRule());
+        validationRules.add(new ProductCategoryValidationRule());
     }
 
     public ProductValidationResponse validate(Product product) {

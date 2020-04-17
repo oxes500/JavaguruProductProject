@@ -1,8 +1,7 @@
 package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.RemoveProductByIdService;
-import lv.javaguru.finalwork.businesslogic.validation.IdValidatorInDb;
-import lv.javaguru.finalwork.database.ProductDatabase;
+import lv.javaguru.finalwork.database.InMemoryProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +10,12 @@ import java.util.Scanner;
 @Component
 public class ProductUiRemoveProduct {
 
-    @Autowired private ProductDatabase database;
-    @Autowired private IdValidatorInDb idValidatorInDb;
-    @Autowired private RemoveProductByIdService removeProductByIdService;
+    private RemoveProductByIdService removeProductByIdService;
+
+    @Autowired
+    public ProductUiRemoveProduct(RemoveProductByIdService removeProductByIdService) {
+        this.removeProductByIdService = removeProductByIdService;
+    }
 
     public void removeProduct() {
         Scanner sc = new Scanner(System.in);

@@ -4,7 +4,7 @@ import lv.javaguru.finalwork.businesslogic.services.AddProductService;
 import lv.javaguru.finalwork.businesslogic.services.ProductCategorySwitcherService;
 import lv.javaguru.finalwork.businesslogic.validation.ProductValidator;
 import lv.javaguru.finalwork.businesslogic.validation.responses.AddProductResponse;
-import lv.javaguru.finalwork.database.ProductDatabase;
+import lv.javaguru.finalwork.database.InMemoryProductDatabase;
 import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,12 @@ import java.util.Scanner;
 @Component
 public class ProductUiAddProduct {
 
-    @Autowired ProductDatabase database;
-    @Autowired ProductValidator productValidator;
-    @Autowired AddProductService productService;
+    private AddProductService productService;
+
+    @Autowired
+    public ProductUiAddProduct(AddProductService productService) {
+        this.productService = productService;
+    }
 
     public void addProduct() {
         Scanner sc = new Scanner(System.in);
@@ -34,7 +37,7 @@ public class ProductUiAddProduct {
         System.out.println("Enter 5 - milk, 6 - meat, 7 - fish");
         System.out.println("If there's no your category just press enter");
 
-        int numberOfCategory = Integer.parseInt(sc.nextLine());
+        String numberOfCategory = sc.nextLine();
         ProductCategorySwitcherService categorySwitcher = new ProductCategorySwitcherService();
         Category category = categorySwitcher.getCategory(numberOfCategory);
 

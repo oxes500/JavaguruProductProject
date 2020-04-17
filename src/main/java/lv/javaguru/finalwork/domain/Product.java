@@ -1,6 +1,7 @@
 package lv.javaguru.finalwork.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Product {
 
@@ -11,6 +12,12 @@ public class Product {
 
     private BigDecimal discount;
     private String description;
+
+    private BigDecimal divisor = new BigDecimal("100");
+
+    public Product() {
+
+    }
 
     public Product(String name, BigDecimal price, Category category) {
         this.name = name;
@@ -102,13 +109,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", category=" + category +
-                ", discount=" + discount +
-                ", description='" + description + '\'' +
-                '}';
+
+        BigDecimal stringPrice = price.setScale(2, RoundingMode.CEILING);
+        BigDecimal stringDiscount = (discount.multiply(divisor)).setScale(2,RoundingMode.CEILING);
+        BigDecimal stringActualPrice = (price.subtract(price.divide(divisor).multiply(discount.multiply(divisor)))).setScale(2, RoundingMode.CEILING);
+
+        return  "Product ID: " + id +", Name: " + name + " Category: " + category + ", Regular price: " + stringPrice + "EUR, Discount: " + stringDiscount + "%, Actual price: " + stringActualPrice + "EUR, description: " + description;
     }
 }

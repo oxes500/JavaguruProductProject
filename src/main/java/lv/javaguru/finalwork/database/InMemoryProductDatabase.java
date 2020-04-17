@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class ProductDatabase {
+//@Component
+public class InMemoryProductDatabase {
     private int currentID = 1;
     private List<Product> products = new ArrayList<>();
 

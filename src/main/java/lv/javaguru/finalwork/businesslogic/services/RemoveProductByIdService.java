@@ -1,25 +1,22 @@
 package lv.javaguru.finalwork.businesslogic.services;
 
-import lv.javaguru.finalwork.businesslogic.validation.IdValidatorInDb;
-import lv.javaguru.finalwork.database.ProductDatabase;
+import lv.javaguru.finalwork.database.JDBCProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RemoveProductByIdService {
 
-    private IdValidatorInDb idValidatorInDb;
-    private ProductDatabase database;
+    private JDBCProductRepository database;
 
     @Autowired
-    public RemoveProductByIdService(IdValidatorInDb idValidatorInDb, ProductDatabase database) {
-        this.idValidatorInDb = idValidatorInDb;
+    public RemoveProductByIdService(JDBCProductRepository database) {
         this.database = database;
     }
 
     public boolean removeProductById(int idNumber) {
-        if (idValidatorInDb.validateId(idNumber)) {
-            database.removeProductById(idNumber);
+        if (true) {
+            database.deleteById(idNumber);
             return true;
         } else {
             return false;

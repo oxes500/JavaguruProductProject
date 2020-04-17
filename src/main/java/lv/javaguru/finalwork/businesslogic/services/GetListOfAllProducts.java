@@ -1,7 +1,6 @@
 package lv.javaguru.finalwork.businesslogic.services;
 
-import lv.javaguru.finalwork.businesslogic.validation.DbIsNotEmpty;
-import lv.javaguru.finalwork.database.ProductDatabase;
+import lv.javaguru.finalwork.database.JDBCProductRepository;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,18 +10,16 @@ import java.util.List;
 @Component
 public class GetListOfAllProducts {
 
-    private DbIsNotEmpty dbIsNotEmpty;
-    private ProductDatabase productDatabase;
+    private JDBCProductRepository database;
 
     @Autowired
-    public GetListOfAllProducts(DbIsNotEmpty dbIsNotEmpty, ProductDatabase productDatabase) {
-        this.dbIsNotEmpty = dbIsNotEmpty;
-        this.productDatabase = productDatabase;
+    public GetListOfAllProducts(JDBCProductRepository database) {
+        this.database = database;
     }
 
     public List<Product> getListOfAllProducts() {
-        if (dbIsNotEmpty.dbIsNotEmpty()) {
-            return productDatabase.getProducts();
+        if (true) {
+            return database.getProducts();
         } else {
             return null;
         }
