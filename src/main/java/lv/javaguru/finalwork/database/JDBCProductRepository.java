@@ -60,14 +60,13 @@ public class JDBCProductRepository implements ProductRepository {
             preparedStatement.setString(3, product.getCategory().toString());
             preparedStatement.setString(4, product.getDiscount().toString());
             preparedStatement.setString(5, product.getDescription());
-
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
                 product.setId(rs.getInt(1));
             }
         } catch (Throwable e) {
-            System.out.println("add product to DB exception");
+            System.out.println("Exception while trying to add product to DB");
             e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
@@ -89,11 +88,14 @@ public class JDBCProductRepository implements ProductRepository {
                 Product product = new Product();
                 product.setId(resultSet.getInt("id"));
                 product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getBigDecimal("price"));
+                product.setCategory(Category.valueOf(resultSet.getString("category")));
+                product.setDiscount(resultSet.getBigDecimal("discount"));
                 product.setDescription(resultSet.getString("description"));
                 products.add(product);
             }
         } catch (Throwable e) {
-            System.out.println("exception");
+            System.out.println("Exception while trying to get list of products from DB");
             e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
@@ -104,26 +106,133 @@ public class JDBCProductRepository implements ProductRepository {
 
     @Override
     public Optional<Product> findById(int id) {
-        return Optional.empty();
+        Connection connection = null;
+        try {
+          connection = getConnection();
+
+          String sql = "select * from PRODUCTS where id = ?";
+          PreparedStatement preparedStatement = connection.prepareStatement(sql);
+          preparedStatement.setInt(1, id);
+          ResultSet resultSet = preparedStatement.executeQuery();
+          Product product = null;
+          if (resultSet.next()) {
+              product = new Product();
+              product.setId(resultSet.getInt("id"));
+              product.setName(resultSet.getString("name"));
+              product.setPrice(resultSet.getBigDecimal("price"));
+              product.setCategory(Category.valueOf(resultSet.getString("category")));
+              product.setDiscount(resultSet.getBigDecimal("discount"));
+              product.setDescription(resultSet.getString("description"));
+          }
+          return Optional.ofNullable(product);
+        } catch (Throwable e) {
+            System.out.println("Exception while trying to find product in by ID DB");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
     }
+
 
     @Override
     public boolean deleteById(int id) {
-        return false;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "delete from PRODUCTS where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();;
+            return true;
+        } catch (Throwable e) {
+            System.out.println("Exception while trying to delete product by ID in DB");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
     }
 
     @Override
     public List<Product> getProductByCategory(Category category) {
-        return null;
+        List<Product> products = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "select * from PRODUCTS where category = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, category.toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getBigDecimal("price"));
+                product.setCategory(Category.valueOf(resultSet.getString("category")));
+                product.setDiscount(resultSet.getBigDecimal("discount"));
+                product.setDescription(resultSet.getString("description"));
+                products.add(product);
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while trying to get products list by category from DB");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return products;
     }
 
     @Override
     public Optional<Product> findProductByName(String productName) {
-        return Optional.empty();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "select * from PRODUCTS where name = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, productName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Product product = null;
+            if (resultSet.next()) {
+                product = new Product();
+                product.setId(resultSet.getInt("id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getBigDecimal("price"));
+                product.setCategory(Category.valueOf(resultSet.getString("category")));
+                product.setDiscount(resultSet.getBigDecimal("discount"));
+                product.setDescription(resultSet.getString("description"));
+            }
+            return Optional.ofNullable(product);
+        } catch (Throwable e) {
+            System.out.println("Exception while trying to get product by name from DB");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
     }
-
 
     @Override
     public void updateProduct(Product product) {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "update PRODUCTS set name = ?, price = ?, category = ?, discount = ?, description = ? where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setString(2, product.getPrice().toString());
+            preparedStatement.setString(3, product.getCategory().toString());
+            preparedStatement.setString(4, product.getDiscount().toString());
+            preparedStatement.setString(5, product.getDescription());
+            preparedStatement.setInt(6, product.getId());
+            preparedStatement.executeUpdate();
+        } catch (Throwable e) {
+            System.out.println("Exception while trying to update product");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection(connection);
+        }
     }
 }

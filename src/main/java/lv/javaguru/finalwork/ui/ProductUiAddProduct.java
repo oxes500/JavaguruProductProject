@@ -2,9 +2,7 @@ package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.AddProductService;
 import lv.javaguru.finalwork.businesslogic.services.ProductCategorySwitcherService;
-import lv.javaguru.finalwork.businesslogic.validation.ProductValidator;
 import lv.javaguru.finalwork.businesslogic.validation.responses.AddProductResponse;
-import lv.javaguru.finalwork.database.InMemoryProductDatabase;
 import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,6 @@ public class ProductUiAddProduct {
         System.out.println("Please choose product category:");
         System.out.println("Enter 1 - vegetable, 2 - fruit, 3 - bread, 4 - drink");
         System.out.println("Enter 5 - milk, 6 - meat, 7 - fish");
-        System.out.println("If there's no your category just press enter");
 
         String numberOfCategory = sc.nextLine();
         ProductCategorySwitcherService categorySwitcher = new ProductCategorySwitcherService();

@@ -13,16 +13,20 @@ public class ProductMainUI {
     @Autowired private ProductUiRemoveProduct productUiRemoveProduct;
     @Autowired private ProductUiUpdateProduct productUiUpdateProduct;
     @Autowired private ProductUiViewList productUiViewList;
+    @Autowired private ProductUiFindProductByName productUiFindProductByName;
+    @Autowired private ProductUiGetByCategory productUiGetByCategory;
 
     public void execute() {
         while (true) {
             System.out.println("Program menu:");
             System.out.println("1. Add new product");
             System.out.println("2. Find product by ID");
-            System.out.println("3. Update product information by ID");
-            System.out.println("4. Remove product by ID");
-            System.out.println("5. View list of products");
-            System.out.println("6. Exit");
+            System.out.println("3. Find product by Name");
+            System.out.println("4. Find products by Category");
+            System.out.println("5. Update product information by ID");
+            System.out.println("6. Remove product by ID");
+            System.out.println("7. View list of products");
+            System.out.println("8. Exit");
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Select option: ");
@@ -35,19 +39,25 @@ public class ProductMainUI {
                 productUiFindProductById.findProductById();
             }
             if (userChoice == 3) {
-                productUiUpdateProduct.updateProduct();
+                productUiFindProductByName.findProductByName();
             }
             if (userChoice == 4) {
-                productUiRemoveProduct.removeProduct();
+                productUiGetByCategory.getListByCategory();
             }
             if (userChoice == 5) {
-                productUiViewList.viewList();
+                productUiUpdateProduct.updateProduct();
             }
             if (userChoice == 6) {
+                productUiRemoveProduct.removeProduct();
+            }
+            if (userChoice == 7) {
+                productUiViewList.viewList();
+            }
+            if (userChoice == 8) {
                 System.out.println("Goodbye!");
                 break;
             }
-            if (userChoice <1 || userChoice >6) {
+            if (userChoice <1 || userChoice >8) {
                 System.out.println("Please enter valid menu number");
             }
             System.out.println();

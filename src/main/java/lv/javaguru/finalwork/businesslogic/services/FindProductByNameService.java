@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FindProductByIdService {
+public class FindProductByNameService {
 
     private ProductRepository database;
 
     @Autowired
-    public FindProductByIdService(ProductRepository database) {
+    public FindProductByNameService(ProductRepository database) {
         this.database = database;
     }
 
-    public Product findProductById(int idNumber) {
-        if (database.findById(idNumber).isPresent()) {
-            return database.findById(idNumber).get();
+    public Product findProductByName(String name) {
+        if (database.findProductByName(name).isPresent()) {
+            return database.findProductByName(name).get();
         } else {
             return null;
         }

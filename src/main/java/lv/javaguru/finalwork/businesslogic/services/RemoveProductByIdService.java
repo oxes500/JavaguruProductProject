@@ -1,16 +1,16 @@
 package lv.javaguru.finalwork.businesslogic.services;
 
-import lv.javaguru.finalwork.database.JDBCProductRepository;
+import lv.javaguru.finalwork.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RemoveProductByIdService {
 
-    private JDBCProductRepository database;
+    private ProductRepository database;
 
     @Autowired
-    public RemoveProductByIdService(JDBCProductRepository database) {
+    public RemoveProductByIdService(ProductRepository database) {
         this.database = database;
     }
 

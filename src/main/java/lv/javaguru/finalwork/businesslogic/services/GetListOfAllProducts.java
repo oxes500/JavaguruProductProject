@@ -1,6 +1,6 @@
 package lv.javaguru.finalwork.businesslogic.services;
 
-import lv.javaguru.finalwork.database.JDBCProductRepository;
+import lv.javaguru.finalwork.database.ProductRepository;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,10 +10,10 @@ import java.util.List;
 @Component
 public class GetListOfAllProducts {
 
-    private JDBCProductRepository database;
+    private ProductRepository database;
 
     @Autowired
-    public GetListOfAllProducts(JDBCProductRepository database) {
+    public GetListOfAllProducts(ProductRepository database) {
         this.database = database;
     }
 
