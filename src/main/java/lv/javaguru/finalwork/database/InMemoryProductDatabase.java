@@ -1,7 +1,6 @@
 package lv.javaguru.finalwork.database;
 
 import lv.javaguru.finalwork.domain.Product;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -18,7 +18,7 @@ public class ProductUiFindProductById {
         if (findProductByIdService.findProductById(idOfProduct) != null) {
             System.out.println("Found product is: " + findProductByIdService.findProductById(idOfProduct));
         } else {
-            System.out.println("Number of ID is not correct!");
+            System.out.println("Product with ID " + idOfProduct + " not found!");
         }
     }
 }

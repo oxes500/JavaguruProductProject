@@ -17,6 +17,7 @@ public class ProductMainUI {
     @Autowired private ProductUiGetByCategory productUiGetByCategory;
 
     public void execute() {
+
         while (true) {
             System.out.println("Program menu:");
             System.out.println("1. Add new product");
@@ -30,38 +31,37 @@ public class ProductMainUI {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Select option: ");
-            int userChoice = Integer.parseInt(sc.nextLine());
+            String userChoice = sc.nextLine();
 
-            if (userChoice == 1) {
+            if (userChoice.equals("1")) {
                 productUiAddProduct.addProduct();
             }
-            if (userChoice == 2) {
+            if (userChoice.equals("2")) {
                 productUiFindProductById.findProductById();
             }
-            if (userChoice == 3) {
+            if (userChoice.equals("3")) {
                 productUiFindProductByName.findProductByName();
             }
-            if (userChoice == 4) {
+            if (userChoice.equals("4")) {
                 productUiGetByCategory.getListByCategory();
             }
-            if (userChoice == 5) {
+            if (userChoice.equals("5")) {
                 productUiUpdateProduct.updateProduct();
             }
-            if (userChoice == 6) {
+            if (userChoice.equals("6")) {
                 productUiRemoveProduct.removeProduct();
             }
-            if (userChoice == 7) {
+            if (userChoice.equals("7")) {
                 productUiViewList.viewList();
             }
-            if (userChoice == 8) {
+            if (userChoice.equals("8")) {
                 System.out.println("Goodbye!");
                 break;
             }
-            if (userChoice <1 || userChoice >8) {
-                System.out.println("Please enter valid menu number");
+            if (userChoice.isEmpty()) {
+                System.out.println("First type number, then press enter valid menu number");
             }
-            System.out.println();
+            System.out.println("");
         }
     }
-
 }
