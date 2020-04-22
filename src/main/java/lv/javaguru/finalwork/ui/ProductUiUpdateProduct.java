@@ -24,7 +24,7 @@ public class ProductUiUpdateProduct {
     public void updateProduct() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter ID of product to update it:");
-        int idOfProduct = Integer.parseInt(sc.nextLine());
+        Long idOfProduct = Long.parseLong(sc.nextLine());
 
         System.out.println("Enter product name:");
         String productName = sc.nextLine();

@@ -1,22 +1,35 @@
 package lv.javaguru.finalwork.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@Entity
+@Table(name = "products")
 public class Product {
 
-    private Integer id;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
     private Category category;
 
+    @Column(name = "discount", precision = 19, scale = 4)
     private BigDecimal discount;
+
+    @Column(name = "description", nullable = false)
     private String description;
 
-    private BigDecimal divisor = new BigDecimal("100");
-
     public Product() {
-
     }
 
     public Product(String name, BigDecimal price, Category category) {
@@ -33,11 +46,11 @@ public class Product {
         this.description = description;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -109,7 +122,7 @@ public class Product {
 
     @Override
     public String toString() {
-
+        BigDecimal divisor = new BigDecimal("100");
         BigDecimal stringPrice = price.setScale(2, RoundingMode.CEILING);
         BigDecimal stringDiscount = (discount.multiply(divisor)).setScale(2,RoundingMode.CEILING);
         BigDecimal stringActualPrice = (price.subtract(price.divide(divisor).multiply(discount.multiply(divisor)))).setScale(2, RoundingMode.CEILING);

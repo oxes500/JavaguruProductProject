@@ -20,7 +20,7 @@ public class ProductUiRemoveProduct {
     public void removeProduct() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter ID of product to remove:");
-        Integer idOfProduct = Integer.parseInt(sc.nextLine());
+        Long idOfProduct = Long.parseLong(sc.nextLine());
         if (removeProductByIdService.removeProductById(idOfProduct)) {
             System.out.println("Product with ID successfully deleted");
         } else {

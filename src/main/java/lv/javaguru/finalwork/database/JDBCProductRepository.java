@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+//@Component
 public class JDBCProductRepository implements ProductRepository {
 
     @Value( "${jdbc.url}" )
@@ -63,7 +63,7 @@ public class JDBCProductRepository implements ProductRepository {
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
-                product.setId(rs.getInt(1));
+                product.setId(rs.getLong(1));
             }
         } catch (Throwable e) {
             System.out.println("Exception while trying to add product to DB");
@@ -86,7 +86,7 @@ public class JDBCProductRepository implements ProductRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(resultSet.getInt("id"));
+                product.setId(resultSet.getLong("id"));
                 product.setName(resultSet.getString("name"));
                 product.setPrice(resultSet.getBigDecimal("price"));
                 product.setCategory(Category.valueOf(resultSet.getString("category")));
@@ -105,19 +105,19 @@ public class JDBCProductRepository implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findById(int id) {
+    public Optional<Product> findById(Long id) {
         Connection connection = null;
         try {
           connection = getConnection();
 
           String sql = "select * from PRODUCTS where id = ?";
           PreparedStatement preparedStatement = connection.prepareStatement(sql);
-          preparedStatement.setInt(1, id);
+          preparedStatement.setLong(1, id);
           ResultSet resultSet = preparedStatement.executeQuery();
           Product product = null;
           if (resultSet.next()) {
               product = new Product();
-              product.setId(resultSet.getInt("id"));
+              product.setId(resultSet.getLong("id"));
               product.setName(resultSet.getString("name"));
               product.setPrice(resultSet.getBigDecimal("price"));
               product.setCategory(Category.valueOf(resultSet.getString("category")));
@@ -136,13 +136,13 @@ public class JDBCProductRepository implements ProductRepository {
 
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(Long id) {
         Connection connection = null;
         try {
             connection = getConnection();
             String sql = "delete from PRODUCTS where id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             preparedStatement.execute();;
             return true;
         } catch (Throwable e) {
@@ -166,7 +166,7 @@ public class JDBCProductRepository implements ProductRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(resultSet.getInt("id"));
+                product.setId(resultSet.getLong("id"));
                 product.setName(resultSet.getString("name"));
                 product.setPrice(resultSet.getBigDecimal("price"));
                 product.setCategory(Category.valueOf(resultSet.getString("category")));
@@ -196,7 +196,7 @@ public class JDBCProductRepository implements ProductRepository {
             Product product = null;
             if (resultSet.next()) {
                 product = new Product();
-                product.setId(resultSet.getInt("id"));
+                product.setId(resultSet.getLong("id"));
                 product.setName(resultSet.getString("name"));
                 product.setPrice(resultSet.getBigDecimal("price"));
                 product.setCategory(Category.valueOf(resultSet.getString("category")));
@@ -225,7 +225,7 @@ public class JDBCProductRepository implements ProductRepository {
             preparedStatement.setString(3, product.getCategory().toString());
             preparedStatement.setString(4, product.getDiscount().toString());
             preparedStatement.setString(5, product.getDescription());
-            preparedStatement.setInt(6, product.getId());
+            preparedStatement.setLong(6, product.getId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while trying to update product");

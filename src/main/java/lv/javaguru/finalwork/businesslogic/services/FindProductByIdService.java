@@ -15,7 +15,7 @@ public class FindProductByIdService {
         this.database = database;
     }
 
-    public Product findProductById(int idNumber) {
+    public Product findProductById(Long idNumber) {
         if (database.findById(idNumber).isPresent()) {
             return database.findById(idNumber).get();
         } else {

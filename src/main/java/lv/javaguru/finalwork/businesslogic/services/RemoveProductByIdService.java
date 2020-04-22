@@ -14,7 +14,7 @@ public class RemoveProductByIdService {
         this.database = database;
     }
 
-    public boolean removeProductById(int idNumber) {
+    public boolean removeProductById(Long idNumber) {
         if (true) {
             database.deleteById(idNumber);
             return true;

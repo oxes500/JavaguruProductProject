@@ -16,7 +16,7 @@ public class UpdateProductService {
         this.database = database;
     }
 
-    public UpdateProductResponse updateProduct(Product product, int id) {
+    public UpdateProductResponse updateProduct(Product product, Long id) {
         if (true) {
             product.setId(id);
             database.updateProduct(product);

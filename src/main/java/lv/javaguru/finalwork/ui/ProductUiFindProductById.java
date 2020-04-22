@@ -14,7 +14,7 @@ public class ProductUiFindProductById {
     public void findProductById() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter ID of product to find it:");
-        int idOfProduct = Integer.parseInt(sc.nextLine());
+        Long idOfProduct = Long.parseLong(sc.nextLine());
         if (findProductByIdService.findProductById(idOfProduct) != null) {
             System.out.println("Found product is: " + findProductByIdService.findProductById(idOfProduct));
         } else {
