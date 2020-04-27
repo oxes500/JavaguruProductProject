@@ -11,22 +11,30 @@ import lv.javaguru.finalwork.domain.ProductList;
 import lv.javaguru.finalwork.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class AddProdcutServiceToCreatedListService {
+public class AddProductToPreviousListService {
 
     @Autowired private ProductValidator productValidator;
     @Autowired private JPAProductRepository jpaProductRepository;
     @Autowired private JPAProductListRepository jpaProductListRepository;
     @Autowired private JPAUserRepository jpaUserRepository;
 
-
-    public AddProductResponse addProduct(Product product, ProductList productList) {
+    @Transactional
+    public AddProductResponse addProduct(Product product, ProductList productList, User user) {
         ProductValidationResponse validationResponse = productValidator.validate(product);
         if (!validationResponse.isSuccess()) {
             return new AddProductResponse(false, validationResponse.getErrorMessages());
         }
-        product.setProductList(productList);
+        User userFromDb = jpaUserRepository.findByUsername(user.getUsername());
+        jpaUserRepository.save(userFromDb);
+        productList.setUser(userFromDb);
+
+        ProductList productFromDb = jpaProductListRepository.findByTitle(productList.getTitle());
+        jpaProductListRepository.save(productFromDb);
+        product.setProductList(productFromDb);
+
         jpaProductRepository.save(product);
         return new AddProductResponse(true, null);
     }

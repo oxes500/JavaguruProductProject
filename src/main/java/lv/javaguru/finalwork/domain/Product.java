@@ -130,24 +130,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productList=" + productList +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", category=" + category +
-                ", discount=" + discount +
-                ", description='" + description + '\'' +
-                '}';
-    }
-
-    /*    @Override
-    public String toString() {
         BigDecimal divisor = new BigDecimal("100");
         BigDecimal stringPrice = price.setScale(2, RoundingMode.CEILING);
         BigDecimal stringDiscount = (discount.multiply(divisor)).setScale(2,RoundingMode.CEILING);
         BigDecimal stringActualPrice = (price.subtract(price.divide(divisor).multiply(discount.multiply(divisor)))).setScale(2, RoundingMode.CEILING);
 
-        return  "Product ID: " + id +", Name: " + name + " Category: " + category + ", Regular price: " + stringPrice + "EUR, Discount: " + stringDiscount + "%, Actual price: " + stringActualPrice + "EUR, description: " + description;
-    }*/
+        return  "Product ID: " + id +" , ProductList: " + '\n' + productList +", Name: " + name + " Category: " + category + ", Regular price: " + stringPrice + "EUR, Discount: " + stringDiscount + "%, Actual price: " + stringActualPrice + "EUR, description: " + description + '\n';
+    }
 }

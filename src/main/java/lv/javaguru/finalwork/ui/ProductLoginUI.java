@@ -18,7 +18,7 @@ public class ProductLoginUI {
     @Autowired private RegisterUserService registerUserService;
     @Autowired private LoginUserService loginUserService;
     @Autowired private ProductMainUI productMainUI;
-    public static User logedInUser = new User();
+    static User logedInUser = new User();
 
     public void execute() {
 

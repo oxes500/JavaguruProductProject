@@ -7,6 +7,7 @@ import lv.javaguru.finalwork.database.JPAUserRepository;
 import lv.javaguru.finalwork.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class RegisterUserService {
@@ -19,6 +20,7 @@ public class RegisterUserService {
         this.userValidator = userValidator;
     }
 
+    @Transactional
     public UserValidationResponse registerUser(User user) {
         UserValidationResponse userValidationResponse = userValidator.validate(user);
         if (userValidationResponse.isSuccess()) {

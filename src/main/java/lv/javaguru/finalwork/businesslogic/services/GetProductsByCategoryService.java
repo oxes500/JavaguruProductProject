@@ -5,6 +5,7 @@ import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class GetProductsByCategoryService {
         this.database = database;
     }
 
+    @Transactional
     public List<Product> getListByCategory(Category category) {
         return StreamSupport
                 .stream(database.findAll().spliterator(), false)

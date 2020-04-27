@@ -4,6 +4,7 @@ import lv.javaguru.finalwork.database.JPAProductRepository;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class FindProductByNameService {
@@ -15,6 +16,7 @@ public class FindProductByNameService {
         this.database = database;
     }
 
+    @Transactional
     public Product findProductByName(String name) {
         if (database.findByName(name).isPresent()) {
             return database.findByName(name).get();

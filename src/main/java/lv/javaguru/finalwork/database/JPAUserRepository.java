@@ -7,4 +7,6 @@ public interface JPAUserRepository extends CrudRepository <User, Long> {
 
     boolean existsByUsernameAndPassword(String username, String password);
 
+    User findByUsername(String username);
+
 }

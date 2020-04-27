@@ -6,6 +6,7 @@ import lv.javaguru.finalwork.database.JPAUserRepository;
 import lv.javaguru.finalwork.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class LoginUserService {
@@ -18,6 +19,7 @@ public class LoginUserService {
         this.userValidator = userValidator;
     }
 
+    @Transactional
     public UserLoginValidationResponse loginUser(User user) {
         if (jpaUserRepository.existsByUsernameAndPassword(user.getUsername(), user.getPassword())) {
             return new UserLoginValidationResponse(true, null);
