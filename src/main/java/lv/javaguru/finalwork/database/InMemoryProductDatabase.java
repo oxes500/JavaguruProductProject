@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.database;
 
 import lv.javaguru.finalwork.domain.Product;
@@ -37,7 +38,7 @@ public class InMemoryProductDatabase {
         return products;
     }
 
-/*    public void updateProduct(Product product) {
+    public void updateProduct(Product product) {
         Product updatedProduct = products.get(product.getId());
         updatedProduct.setName(product.getName());
         updatedProduct.setCategory(product.getCategory());
@@ -45,5 +46,5 @@ public class InMemoryProductDatabase {
         updatedProduct.setDiscount(product.getDiscount());
         updatedProduct.setPrice(product.getPrice());
         products.add(product.getId(), updatedProduct);
-    }*/
-}
+    }
+}*/

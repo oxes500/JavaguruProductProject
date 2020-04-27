@@ -1,27 +1,28 @@
 package lv.javaguru.finalwork.businesslogic.services;
 
-import lv.javaguru.finalwork.database.ProductRepository;
+import lv.javaguru.finalwork.database.JPAProductRepository;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 public class GetListOfAllProducts {
 
-    private ProductRepository database;
+    private JPAProductRepository database;
 
     @Autowired
-    public GetListOfAllProducts(ProductRepository database) {
+    public GetListOfAllProducts(JPAProductRepository database) {
         this.database = database;
     }
 
     public List<Product> getListOfAllProducts() {
-        if (true) {
-            return database.getProducts();
-        } else {
-            return null;
-        }
+        database.findAll();
+        return StreamSupport
+                .stream(database.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

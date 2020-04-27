@@ -1,6 +1,6 @@
 package lv.javaguru.finalwork.businesslogic.services;
 
-import lv.javaguru.finalwork.database.ProductRepository;
+import lv.javaguru.finalwork.database.JPAProductRepository;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class FindProductByIdService {
 
-    private ProductRepository database;
+    private JPAProductRepository database;
 
     @Autowired
-    public FindProductByIdService(ProductRepository database) {
+    public FindProductByIdService(JPAProductRepository database) {
         this.database = database;
     }
 

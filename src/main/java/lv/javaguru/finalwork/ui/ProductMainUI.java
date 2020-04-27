@@ -16,7 +16,7 @@ public class ProductMainUI {
     @Autowired private ProductUiFindProductByName productUiFindProductByName;
     @Autowired private ProductUiGetByCategory productUiGetByCategory;
 
-    public void execute() {
+    public void executeMainUI() {
 
         while (true) {
             System.out.println("Program menu:");

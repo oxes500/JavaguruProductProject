@@ -6,23 +6,20 @@ import lv.javaguru.finalwork.domain.Product;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
 
-@Component
+//@Component
 
 
 public class ORMProductRepositoryImpl implements ProductRepository {
 
 
-    @Autowired
+    //@Autowired
     private SessionFactory sessionFactory;
 
     @Transactional
@@ -46,8 +43,12 @@ public class ORMProductRepositoryImpl implements ProductRepository {
     @Transactional
     @Override
     public boolean deleteById(Long id) {
-        sessionFactory.getCurrentSession().delete((Product) sessionFactory.getCurrentSession().createCriteria(Product.class).add(Restrictions.eq("id", id)).uniqueResult());
-        return true;
+        try {
+            sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().createCriteria(Product.class).add(Restrictions.eq("id", id)).uniqueResult());
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
     @Transactional

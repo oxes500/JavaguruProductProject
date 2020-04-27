@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.database;
 
 import lv.javaguru.finalwork.SpringConfig;
@@ -23,9 +24,11 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { SpringConfig.class })
+*/
 /*@SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:cleanAllTables.sql")
-})*/
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:truncateTableProducts.sql")
+})*//*
+
 
 @TransactionConfiguration(defaultRollback = false)
 public class JDBCProductRepositoryTest {
@@ -86,8 +89,7 @@ public class JDBCProductRepositoryTest {
         Optional<Product> foundProduct = productRepository.findProductByName("potato");
         assertTrue(foundProduct.isPresent());
     }
-
-    @Rollback(false)
+    
     @Transactional
     @Test
     public void updateProduct() {
@@ -98,4 +100,7 @@ public class JDBCProductRepositoryTest {
         productRepository.updateProduct(updatedProduct);
         assertNotEquals(product, productRepository.findById(updatedProduct.getId()).get());
     }
-}
+
+
+
+}*/

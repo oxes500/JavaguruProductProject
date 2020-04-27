@@ -10,8 +10,12 @@ public class Product {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "product_list_id", nullable = false)
+    private ProductList productList;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -32,12 +36,6 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, BigDecimal price, Category category) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-    }
-
     public Product(String name, BigDecimal price, Category category, BigDecimal discount, String description) {
         this.name = name;
         this.price = price;
@@ -52,6 +50,14 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ProductList getProductList() {
+        return productList;
+    }
+
+    public void setProductList(ProductList productList) {
+        this.productList = productList;
     }
 
     public String getName() {
@@ -101,7 +107,8 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (id != product.id) return false;
+        if (id != null ? !id.equals(product.id) : product.id != null) return false;
+        if (productList != null ? !productList.equals(product.productList) : product.productList != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
         if (price != null ? !price.equals(product.price) : product.price != null) return false;
         if (category != product.category) return false;
@@ -111,7 +118,8 @@ public class Product {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (productList != null ? productList.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (category != null ? category.hashCode() : 0);
@@ -122,11 +130,24 @@ public class Product {
 
     @Override
     public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productList=" + productList +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                ", discount=" + discount +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    /*    @Override
+    public String toString() {
         BigDecimal divisor = new BigDecimal("100");
         BigDecimal stringPrice = price.setScale(2, RoundingMode.CEILING);
         BigDecimal stringDiscount = (discount.multiply(divisor)).setScale(2,RoundingMode.CEILING);
         BigDecimal stringActualPrice = (price.subtract(price.divide(divisor).multiply(discount.multiply(divisor)))).setScale(2, RoundingMode.CEILING);
 
         return  "Product ID: " + id +", Name: " + name + " Category: " + category + ", Regular price: " + stringPrice + "EUR, Discount: " + stringDiscount + "%, Actual price: " + stringActualPrice + "EUR, description: " + description;
-    }
+    }*/
 }
