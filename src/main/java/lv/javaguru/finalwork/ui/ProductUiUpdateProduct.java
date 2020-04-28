@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.ProductCategorySwitcherService;
@@ -66,3 +67,4 @@ public class ProductUiUpdateProduct {
     }
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 
 package lv.javaguru.finalwork.ui;
 
@@ -87,4 +88,4 @@ public class ProductLoginUI {
             }
         }
     }
-}
+}*/

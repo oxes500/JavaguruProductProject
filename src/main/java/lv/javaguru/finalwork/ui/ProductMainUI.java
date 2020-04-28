@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import java.util.Scanner;
 @Component
 public class ProductMainUI {
 
-    @Autowired private ProductUiAddProduct productUiAddProduct;
+*/
+/*    @Autowired private ProductUiAddProduct productUiAddProduct;*//*
+
     @Autowired private ProductUiFindProductById productUiFindProductById;
     @Autowired private ProductUiRemoveProduct productUiRemoveProduct;
     @Autowired private ProductUiUpdateProduct productUiUpdateProduct;
@@ -33,9 +36,11 @@ public class ProductMainUI {
             System.out.println("Select option: ");
             String userChoice = sc.nextLine();
 
-            if (userChoice.equals("1")) {
+*/
+/*            if (userChoice.equals("1")) {
                 productUiAddProduct.addProduct();
-            }
+            }*//*
+
             if (userChoice.equals("2")) {
                 productUiFindProductById.findProductById();
             }
@@ -64,4 +69,4 @@ public class ProductMainUI {
             System.out.println("");
         }
     }
-}
+}*/

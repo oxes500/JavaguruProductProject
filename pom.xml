@@ -32,6 +32,13 @@ maven-4.0.0.xsd">
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.11</version>
         </dependency>
+
+        <!--WEB-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -39,7 +46,6 @@ maven-4.0.0.xsd">
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

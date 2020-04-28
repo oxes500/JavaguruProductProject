@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.AddProductToPreviousListService;
@@ -208,4 +209,4 @@ public class ProductUiAddProduct {
             System.out.println("Please enter valid data type");
         }
     }
-}
+}*/
