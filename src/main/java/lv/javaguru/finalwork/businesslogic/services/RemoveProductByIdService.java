@@ -8,12 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class RemoveProductByIdService {
 
-    private JPAProductRepository database;
-
-    @Autowired
-    public RemoveProductByIdService(JPAProductRepository database) {
-        this.database = database;
-    }
+    @Autowired private JPAProductRepository database;
 
     @Transactional
     public boolean removeProductById(Long idNumber) {

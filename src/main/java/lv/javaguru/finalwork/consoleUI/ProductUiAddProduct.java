@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 import static lv.javaguru.finalwork.ui.ProductLoginUI.logedInUser;
 
-@Component
+//@Component
 public class ProductUiAddProduct {
 
     private AddProductService productService;
@@ -154,52 +154,52 @@ public class ProductUiAddProduct {
                 }
                 if (userChoice.equals("3")) {
 
-                        System.out.println("Enter list title:");
-                        String productListTitle = sc.nextLine();
+                    System.out.println("Enter list title:");
+                    String productListTitle = sc.nextLine();
 
-                        productList.setTitle(productListTitle);
+                    productList.setTitle(productListTitle);
 
-                        System.out.println("Enter product name:");
-                        String productName = sc.nextLine();
+                    System.out.println("Enter product name:");
+                    String productName = sc.nextLine();
 
-                        System.out.println("Enter product price:");
-                        String productRawPrice = sc.nextLine();
-                        BigDecimal productPrice = new BigDecimal(productRawPrice);
+                    System.out.println("Enter product price:");
+                    String productRawPrice = sc.nextLine();
+                    BigDecimal productPrice = new BigDecimal(productRawPrice);
 
-                        System.out.println("Please choose product category:");
-                        System.out.println("Enter 1 - vegetable, 2 - fruit, 3 - bread, 4 - drink");
-                        System.out.println("Enter 5 - milk, 6 - meat, 7 - fish");
+                    System.out.println("Please choose product category:");
+                    System.out.println("Enter 1 - vegetable, 2 - fruit, 3 - bread, 4 - drink");
+                    System.out.println("Enter 5 - milk, 6 - meat, 7 - fish");
 
-                        String numberOfCategory = sc.nextLine();
-                        ProductCategorySwitcherService categorySwitcher = new ProductCategorySwitcherService();
-                        Category category = categorySwitcher.getCategory(numberOfCategory);
+                    String numberOfCategory = sc.nextLine();
+                    ProductCategorySwitcherService categorySwitcher = new ProductCategorySwitcherService();
+                    Category category = categorySwitcher.getCategory(numberOfCategory);
 
-                        System.out.println("Enter product discount:");
-                        String productRawDiscount = sc.nextLine();
-                        BigDecimal productDiscount = new BigDecimal(productRawDiscount);
+                    System.out.println("Enter product discount:");
+                    String productRawDiscount = sc.nextLine();
+                    BigDecimal productDiscount = new BigDecimal(productRawDiscount);
 
-                        System.out.println("Enter product description:");
-                        String productDescription = sc.nextLine();
+                    System.out.println("Enter product description:");
+                    String productDescription = sc.nextLine();
 
-                        Product product = new Product(productName, productPrice, category, productDiscount, productDescription);
+                    Product product = new Product(productName, productPrice, category, productDiscount, productDescription);
 
-                        AddProductResponse response = prodcutServiceToCreatedListService.addProduct(product, productList, logedInUser);
-                        if (response.isSuccess()) {
-                            System.out.println("Product successfully added in the list!");
-                        } else {
-                            System.out.println("Operation failed!");
-                            System.out.println("Error message: " + response.getErrorMessages());
-                        }
-                        System.out.println("");
-                        System.out.println("1. Add an item");
-                        System.out.println("2. Exit to main menu");
-                        String choice = sc.nextLine();
-                        if (choice.equals("1")) {
-                            userChoice = "2";
-                        } else {
-                            break;
-                        }
+                    AddProductResponse response = prodcutServiceToCreatedListService.addProduct(product, productList, logedInUser);
+                    if (response.isSuccess()) {
+                        System.out.println("Product successfully added in the list!");
+                    } else {
+                        System.out.println("Operation failed!");
+                        System.out.println("Error message: " + response.getErrorMessages());
                     }
+                    System.out.println("");
+                    System.out.println("1. Add an item");
+                    System.out.println("2. Exit to main menu");
+                    String choice = sc.nextLine();
+                    if (choice.equals("1")) {
+                        userChoice = "2";
+                    } else {
+                        break;
+                    }
+                }
                 if (userChoice.equals("4")) {
                     System.out.println("Going to main menu");
                     break;

@@ -63,8 +63,6 @@ public class ProductUiUpdateProduct {
         } catch (NumberFormatException e) {
             System.out.println("Please enter valid data type!");
         }
-
     }
-
 }
 */

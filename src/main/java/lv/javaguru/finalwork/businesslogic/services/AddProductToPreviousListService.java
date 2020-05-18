@@ -21,7 +21,6 @@ public class AddProductToPreviousListService {
     @Autowired private JPAProductListRepository jpaProductListRepository;
     @Autowired private JPAUserRepository jpaUserRepository;
 
-
     @Transactional
     public AddProductResponse addProduct(Product product) {
         ProductValidationResponse validationResponse = productValidator.validate(product);
@@ -42,24 +41,4 @@ public class AddProductToPreviousListService {
         jpaProductRepository.save(product);
         return new AddProductResponse(true, null);
     }
-
-
- /*   @Transactional
-    public AddProductResponse addProduct(Product product, ProductList productList, User user) {
-        ProductValidationResponse validationResponse = productValidator.validate(product);
-        if (!validationResponse.isSuccess()) {
-            return new AddProductResponse(false, validationResponse.getErrorMessages());
-        }
-        User userFromDb = jpaUserRepository.findByUsername(user.getUsername());
-        jpaUserRepository.save(userFromDb);
-        productList.setUser(userFromDb);
-
-        ProductList productFromDb = jpaProductListRepository.findByTitle(productList.getTitle());
-        jpaProductListRepository.save(productFromDb);
-        product.setProductList(productFromDb);
-
-        jpaProductRepository.save(product);
-        return new AddProductResponse(true, null);
-    }*/
-
 }

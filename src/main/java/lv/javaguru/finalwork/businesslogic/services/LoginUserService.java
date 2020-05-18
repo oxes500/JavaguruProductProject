@@ -14,11 +14,6 @@ public class LoginUserService {
     @Autowired private JPAUserRepository jpaUserRepository;
     @Autowired private UserValidator userValidator;
 
-    public LoginUserService(JPAUserRepository jpaUserRepository, UserValidator userValidator) {
-        this.jpaUserRepository = jpaUserRepository;
-        this.userValidator = userValidator;
-    }
-
     @Transactional
     public UserLoginValidationResponse loginUser(User user) {
         if (jpaUserRepository.existsByUsernameAndPassword(user.getUsername(), user.getPassword())) {

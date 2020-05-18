@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.businesslogic.services;
 
 import lv.javaguru.finalwork.database.JPAProductRepository;
@@ -38,4 +39,4 @@ public class FindProductByNameServiceTest {
         assertNull(victim.findProductByName("product"));
     }
 
-}
+}*/

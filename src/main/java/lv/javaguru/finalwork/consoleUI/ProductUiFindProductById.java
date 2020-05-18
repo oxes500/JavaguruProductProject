@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.FindProductByIdService;
@@ -25,4 +26,4 @@ public class ProductUiFindProductById {
             System.out.println("Please enter valid data type(number)!");
         }
     }
-}
+}*/

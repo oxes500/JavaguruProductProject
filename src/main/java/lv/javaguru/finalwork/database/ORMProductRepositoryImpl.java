@@ -2,22 +2,14 @@ package lv.javaguru.finalwork.database;
 
 import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-
 //@Component
-
-
 public class ORMProductRepositoryImpl implements ProductRepository {
-
 
     //@Autowired
     private SessionFactory sessionFactory;

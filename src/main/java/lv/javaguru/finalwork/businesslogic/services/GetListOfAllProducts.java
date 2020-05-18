@@ -13,12 +13,7 @@ import java.util.stream.StreamSupport;
 @Component
 public class GetListOfAllProducts {
 
-    private JPAProductRepository database;
-
-    @Autowired
-    public GetListOfAllProducts(JPAProductRepository database) {
-        this.database = database;
-    }
+    @Autowired private JPAProductRepository database;
 
     @Transactional
     public List<Product> getListOfAllProducts() {

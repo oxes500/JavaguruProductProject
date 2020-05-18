@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.RemoveProductByIdService;
@@ -30,5 +31,5 @@ public class ProductUiRemoveProduct {
             System.out.println("Please enter valid data type(number)!");
         }
     }
-
 }
+*/

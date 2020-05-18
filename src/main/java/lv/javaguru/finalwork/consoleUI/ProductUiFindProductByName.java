@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.FindProductByNameService;
@@ -23,3 +24,4 @@ public class ProductUiFindProductByName {
     }
 
 }
+*/

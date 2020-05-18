@@ -14,12 +14,7 @@ import java.util.stream.StreamSupport;
 @Component
 public class GetProductsByCategoryService {
 
-    private JPAProductRepository database;
-
-    @Autowired
-    public GetProductsByCategoryService(JPAProductRepository database) {
-        this.database = database;
-    }
+    @Autowired private JPAProductRepository database;
 
     @Transactional
     public List<Product> getListByCategory(Category category) {

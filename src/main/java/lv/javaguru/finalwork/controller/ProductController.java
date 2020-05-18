@@ -1,15 +1,14 @@
-package lv.javaguru.finalwork.Controller;
+package lv.javaguru.finalwork.controller;
 
-import lv.javaguru.finalwork.Exceptions.EmptyListException;
-import lv.javaguru.finalwork.Exceptions.InvalidDataException;
-import lv.javaguru.finalwork.Exceptions.NotFoundException;
+import lv.javaguru.finalwork.exceptions.EmptyListException;
+import lv.javaguru.finalwork.exceptions.InvalidDataException;
+import lv.javaguru.finalwork.exceptions.NotFoundException;
 import lv.javaguru.finalwork.businesslogic.services.*;
 import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -38,7 +37,7 @@ public class ProductController {
     }
 
     @GetMapping
-    List<Product> all() {
+    List<Product> getAllProducts() {
         try {
             return getListOfAllProducts.getListOfAllProducts();
         } catch (EmptyListException e) {
@@ -47,7 +46,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product create(@RequestBody Product product) {
+    public Product addNewProduct(@RequestBody Product product) {
         try {
             addProductService.addProduct(product);
             return product;
@@ -57,7 +56,7 @@ public class ProductController {
     }
 
     @PostMapping("/exists")
-    public Product createInExisting(@RequestBody Product product) {
+    public Product addProductInExistingList(@RequestBody Product product) {
         try {
             addProductToPreviousListService.addProduct(product);
             return product;
@@ -66,17 +65,17 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/find_id_{id}")
+    @GetMapping("/product/{id}")
     public Product findById(@PathVariable Long id) {
-        if (findProductByIdService.findProductById(id)!=null) {
+        try {
             return findProductByIdService.findProductById(id);
-        } else {
-           throw new NotFoundException();
+        } catch (NotFoundException e) {
+            throw new NotFoundException();
         }
     }
 
-    @GetMapping("/find_name_{name}")
-    public Product findById(@PathVariable String name) {
+    @GetMapping("/product/{name}")
+    public Product findByName(@PathVariable String name) {
         try {
             return findProductByNameService.findProductByName(name);
         } catch (NotFoundException e) {
@@ -84,7 +83,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/category_{category}")
+    @GetMapping("/category/{category}")
     List<Product> getByCategory(@PathVariable String category) {
         try {
             return getProductsByCategoryService.getListByCategory(Category.valueOf(category));
@@ -93,7 +92,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/delete_{id}")
+    @DeleteMapping("/product/{id}")
     public String delete(@PathVariable Long id) {
         try {
             removeProductByIdService.removeProductById(id);
@@ -103,7 +102,7 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/update_{id}")
+    @PutMapping("/product/{id}")
     public Product update(@PathVariable Long id, @RequestBody Product product)  {
         try {
             product.setId(id);

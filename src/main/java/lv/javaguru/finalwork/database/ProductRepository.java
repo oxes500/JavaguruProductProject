@@ -2,7 +2,6 @@ package lv.javaguru.finalwork.database;
 
 import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
-
 import java.util.List;
 import java.util.Optional;
 

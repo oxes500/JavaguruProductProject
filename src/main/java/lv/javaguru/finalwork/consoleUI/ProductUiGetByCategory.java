@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.GetProductsByCategoryService;
@@ -34,4 +35,4 @@ public class ProductUiGetByCategory {
             System.out.println("Category is empty, please add an item:");
         }
     }
-}
+}*/

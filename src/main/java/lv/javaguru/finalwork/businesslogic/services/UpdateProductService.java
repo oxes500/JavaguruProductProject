@@ -14,16 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class UpdateProductService {
 
-    private JPAProductRepository jpaProductRepository;
-    private JPAUserRepository jpaUserRepository;
-    private JPAProductListRepository jpaProductListRepository;
-
-    @Autowired
-    public UpdateProductService(JPAProductRepository jpaProductRepository, JPAUserRepository jpaUserRepository, JPAProductListRepository jpaProductListRepository) {
-        this.jpaProductRepository = jpaProductRepository;
-        this.jpaUserRepository = jpaUserRepository;
-        this.jpaProductListRepository = jpaProductListRepository;
-    }
+    @Autowired private JPAProductRepository jpaProductRepository;
+    @Autowired private JPAUserRepository jpaUserRepository;
+    @Autowired private JPAProductListRepository jpaProductListRepository;
 
     @Transactional
     public UpdateProductResponse updateProduct(Product product) {
@@ -42,21 +35,4 @@ public class UpdateProductService {
 
         return new UpdateProductResponse(true, "Update is success!");
     }
-
-/*    @Transactional
-    public UpdateProductResponse updateProduct(Product product, Long id) {
-
-        Product productFromDb = jpaProductRepository.findById(id).get();
-        ProductList productList = jpaProductListRepository.findById(productFromDb.getProductList().getId()).get();
-        User user = jpaUserRepository.findById(productList.getUser().getId()).get();
-
-        product.setId(id);
-        productList.setUser(user);
-        product.setProductList(productList);
-        jpaProductRepository.save(product);
-        jpaProductListRepository.save(productList);
-        jpaUserRepository.save(user);
-
-        return new UpdateProductResponse(true, "Update is success!");
-    }*/
 }

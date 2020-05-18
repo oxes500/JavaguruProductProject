@@ -9,12 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class FindProductByIdService {
 
-    private JPAProductRepository database;
-
-    @Autowired
-    public FindProductByIdService(JPAProductRepository database) {
-        this.database = database;
-    }
+    @Autowired private JPAProductRepository database;
 
     @Transactional
     public Product findProductById(Long idNumber) {

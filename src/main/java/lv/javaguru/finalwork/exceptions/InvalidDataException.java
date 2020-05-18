@@ -1,4 +1,4 @@
-package lv.javaguru.finalwork.Exceptions;
+package lv.javaguru.finalwork.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -9,12 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class FindProductByNameService {
 
-    private JPAProductRepository database;
-
-    @Autowired
-    public FindProductByNameService(JPAProductRepository database) {
-        this.database = database;
-    }
+    @Autowired private JPAProductRepository database;
 
     @Transactional
     public Product findProductByName(String name) {

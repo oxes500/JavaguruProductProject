@@ -16,14 +16,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class AddProductService {
 
-    @Autowired
-    private ProductValidator productValidator;
-    @Autowired
-    private JPAProductRepository jpaProductRepository;
-    @Autowired
-    private JPAProductListRepository jpaProductListRepository;
-    @Autowired
-    private JPAUserRepository jpaUserRepository;
+    @Autowired private ProductValidator productValidator;
+    @Autowired private JPAProductRepository jpaProductRepository;
+    @Autowired private JPAProductListRepository jpaProductListRepository;
+    @Autowired private JPAUserRepository jpaUserRepository;
+
+    public AddProductService(ProductValidator productValidator, JPAProductRepository jpaProductRepository, JPAProductListRepository jpaProductListRepository, JPAUserRepository jpaUserRepository) {
+        this.productValidator = productValidator;
+        this.jpaProductRepository = jpaProductRepository;
+        this.jpaProductListRepository = jpaProductListRepository;
+        this.jpaUserRepository = jpaUserRepository;
+    }
 
     @Transactional
     public AddProductResponse addProduct(Product product) {
@@ -46,20 +49,3 @@ public class AddProductService {
         return new AddProductResponse(true, null);
     }
 }
-
-/*    @Transactional
-    public AddProductResponse addProduct(Product product, ProductList productList, User user) {
-        ProductValidationResponse validationResponse = productValidator.validate(product);
-        if (!validationResponse.isSuccess()) {
-            return new AddProductResponse(false, validationResponse.getErrorMessages());
-        }
-        User userFromDb = jpaUserRepository.findByUsername(user.getUsername());
-        jpaUserRepository.save(userFromDb);
-
-        product.setProductList(productList);
-        productList.setUser(userFromDb);
-
-        jpaProductListRepository.save(productList);
-        jpaProductRepository.save(product);
-        return new AddProductResponse(true, null);
-    }*/

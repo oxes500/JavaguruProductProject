@@ -1,3 +1,4 @@
+/*
 package lv.javaguru.finalwork.ui;
 
 import lv.javaguru.finalwork.businesslogic.services.GetListOfAllProducts;
@@ -22,4 +23,4 @@ public class ProductUiViewList {
             System.out.println("List is empty, please add an item: ");
         }
     }
-}
+}*/

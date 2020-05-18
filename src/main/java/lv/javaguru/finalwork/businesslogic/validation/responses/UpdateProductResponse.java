@@ -1,7 +1,5 @@
 package lv.javaguru.finalwork.businesslogic.validation.responses;
 
-import org.springframework.stereotype.Component;
-
 public class UpdateProductResponse {
 
     private boolean success;
