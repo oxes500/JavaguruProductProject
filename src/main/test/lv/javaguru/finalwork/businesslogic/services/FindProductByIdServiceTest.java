@@ -1,22 +1,21 @@
-/*
 package lv.javaguru.finalwork.businesslogic.services;
 
 import lv.javaguru.finalwork.database.JPAProductRepository;
+import lv.javaguru.finalwork.domain.Category;
 import lv.javaguru.finalwork.domain.Product;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
 
 public class FindProductByIdServiceTest {
 
-    @InjectMocks private FindProductByIdService findProductByIdService;
     @Mock private JPAProductRepository jpaProductRepository;
 
     @Before
@@ -25,18 +24,22 @@ public class FindProductByIdServiceTest {
     }
 
     @Test
-    public void findProductByIdServiceSuccess() {
-        Product product = new Product();
+    public void findProductByIdSuccess() {
+        Product product = new Product("Milk", BigDecimal.valueOf(1.00), Category.MILK, BigDecimal.valueOf(0.20), "milk for dinner");
         FindProductByIdService victim = new FindProductByIdService(jpaProductRepository);
-        Mockito.when(jpaProductRepository.findById(1L)).thenReturn(Optional.of(product));
-        assertEquals(product, victim.findProductById(1L));
+        Long numberToFind = 10L;
+        Mockito.when(jpaProductRepository.findById(numberToFind)).thenReturn(Optional.of(product));
+        Product actual = victim.findProductById(numberToFind);
+        assertEquals(actual, product);
     }
 
     @Test
-    public void findProductByIdServiceNotSuccess() {
+    public void findProductByIdNotSuccess() {
+        Product product = new Product("Milk", BigDecimal.valueOf(1.00), Category.MILK, BigDecimal.valueOf(0.20), "milk for dinner");
         FindProductByIdService victim = new FindProductByIdService(jpaProductRepository);
-        Mockito.when(jpaProductRepository.findById(1L)).thenReturn(Optional.empty());
-        assertNull(victim.findProductById(1L));
+        Long numberToFind = 10L;
+        Mockito.when(jpaProductRepository.findById(numberToFind)).thenReturn(Optional.empty());
+        Product actual = victim.findProductById(numberToFind);
+        assertNull(actual);
     }
 }
-*/

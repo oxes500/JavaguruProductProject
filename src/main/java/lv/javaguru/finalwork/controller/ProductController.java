@@ -65,7 +65,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/productID/{id}")
     public Product findById(@PathVariable Long id) {
         try {
             return findProductByIdService.findProductById(id);
@@ -74,7 +74,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/product/{name}")
+    @GetMapping("/productName/{name}")
     public Product findByName(@PathVariable String name) {
         try {
             return findProductByNameService.findProductByName(name);

@@ -11,6 +11,10 @@ public class FindProductByIdService {
 
     @Autowired private JPAProductRepository database;
 
+    public FindProductByIdService(JPAProductRepository database) {
+        this.database = database;
+    }
+
     @Transactional
     public Product findProductById(Long idNumber) {
         if (database.findById(idNumber).isPresent()) {
