@@ -15,9 +15,12 @@ public class GetListOfAllProducts {
 
     @Autowired private JPAProductRepository database;
 
+    public GetListOfAllProducts(JPAProductRepository database) {
+        this.database = database;
+    }
+
     @Transactional
     public List<Product> getListOfAllProducts() {
-        database.findAll();
         return StreamSupport
                 .stream(database.findAll().spliterator(), false)
                 .collect(Collectors.toList());

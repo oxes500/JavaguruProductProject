@@ -11,6 +11,10 @@ public class FindProductByNameService {
 
     @Autowired private JPAProductRepository database;
 
+    public FindProductByNameService(JPAProductRepository database) {
+        this.database = database;
+    }
+
     @Transactional
     public Product findProductByName(String name) {
         if (database.findByName(name).isPresent()) {
