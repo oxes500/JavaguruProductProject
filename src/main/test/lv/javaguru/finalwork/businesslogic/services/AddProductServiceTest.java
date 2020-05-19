@@ -2,6 +2,7 @@ package lv.javaguru.finalwork.businesslogic.services;
 
 import lv.javaguru.finalwork.businesslogic.validation.ProductValidationResponse;
 import lv.javaguru.finalwork.businesslogic.validation.ProductValidator;
+import lv.javaguru.finalwork.businesslogic.validation.responses.AddProductResponse;
 import lv.javaguru.finalwork.database.JPAProductListRepository;
 import lv.javaguru.finalwork.database.JPAProductRepository;
 import lv.javaguru.finalwork.database.JPAUserRepository;
@@ -45,6 +46,7 @@ public class AddProductServiceTest {
        Mockito.when(productValidator.validate(product)).thenReturn(new ProductValidationResponse(true, null));
        victim.addProduct(product);
        verify(productRepository, times(1)).save(product);
+       Mockito.when(victim.addProduct(product)).thenReturn(new AddProductResponse(true, null));
        assertTrue(victim.addProduct(product).isSuccess());
        assertNull(victim.addProduct(product).getErrorMessages());
    }
