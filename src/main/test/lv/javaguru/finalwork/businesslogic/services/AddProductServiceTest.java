@@ -44,6 +44,7 @@ public class AddProductServiceTest {
        productList.setUser(user);
        AddProductService victim = new AddProductService(productValidator, productRepository, productListRepository, userRepository);
        Mockito.when(productValidator.validate(product)).thenReturn(new ProductValidationResponse(true, null));
+       Mockito.when(userRepository.findByUsername(user.getUsername())).thenReturn(new User(user.getUsername(), user.getPassword()));
        victim.addProduct(product);
        verify(productRepository, times(1)).save(product);
        Mockito.when(victim.addProduct(product)).thenReturn(new AddProductResponse(true, null));
