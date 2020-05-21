@@ -15,6 +15,11 @@ public class RegisterUserService {
     @Autowired private JPAUserRepository jpaUserRepository;
     @Autowired private UserValidator userValidator;
 
+    public RegisterUserService(JPAUserRepository jpaUserRepository, UserValidator userValidator) {
+        this.jpaUserRepository = jpaUserRepository;
+        this.userValidator = userValidator;
+    }
+
     @Transactional
     public UserValidationResponse registerUser(User user) {
         UserValidationResponse userValidationResponse = userValidator.validate(user);
@@ -26,4 +31,3 @@ public class RegisterUserService {
         }
     }
 }
-

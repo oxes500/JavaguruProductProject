@@ -24,7 +24,6 @@ import static org.mockito.Mockito.verify;
 
 public class AddProductServiceTest {
 
-   @InjectMocks private AddProductService addProductService;
    @Mock private ProductValidator productValidator;
    @Mock private JPAProductRepository productRepository;
    @Mock private JPAUserRepository userRepository;
@@ -47,7 +46,6 @@ public class AddProductServiceTest {
        Mockito.when(userRepository.findByUsername(user.getUsername())).thenReturn(new User(user.getUsername(), user.getPassword()));
        victim.addProduct(product);
        verify(productRepository, times(1)).save(product);
-       Mockito.when(victim.addProduct(product)).thenReturn(new AddProductResponse(true, null));
        assertTrue(victim.addProduct(product).isSuccess());
        assertNull(victim.addProduct(product).getErrorMessages());
    }

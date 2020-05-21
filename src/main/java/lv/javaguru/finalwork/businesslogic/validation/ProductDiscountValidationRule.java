@@ -10,7 +10,9 @@ public class ProductDiscountValidationRule implements ProductValidationRule{
 
     @Override
     public boolean isValid(Product product) {
-        return product.getDiscount() != null && product.getDiscount().compareTo(new BigDecimal("0.00")) > 0 && product.getDiscount().compareTo(new BigDecimal("1.00")) < 0;
+        return product.getDiscount() != null
+                && product.getDiscount().compareTo(new BigDecimal("0.00")) > 0
+                && product.getDiscount().compareTo(new BigDecimal("1.00")) < 0;
     }
 
     @Override

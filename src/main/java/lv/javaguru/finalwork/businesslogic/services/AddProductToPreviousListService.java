@@ -21,6 +21,13 @@ public class AddProductToPreviousListService {
     @Autowired private JPAProductListRepository jpaProductListRepository;
     @Autowired private JPAUserRepository jpaUserRepository;
 
+    public AddProductToPreviousListService(ProductValidator productValidator, JPAProductRepository jpaProductRepository, JPAProductListRepository jpaProductListRepository, JPAUserRepository jpaUserRepository) {
+        this.productValidator = productValidator;
+        this.jpaProductRepository = jpaProductRepository;
+        this.jpaProductListRepository = jpaProductListRepository;
+        this.jpaUserRepository = jpaUserRepository;
+    }
+
     @Transactional
     public AddProductResponse addProduct(Product product) {
         ProductValidationResponse validationResponse = productValidator.validate(product);
