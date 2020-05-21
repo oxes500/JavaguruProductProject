@@ -10,6 +10,10 @@ public class RemoveProductByIdService {
 
     @Autowired private JPAProductRepository database;
 
+    public RemoveProductByIdService(JPAProductRepository database) {
+        this.database = database;
+    }
+
     @Transactional
     public boolean removeProductById(Long idNumber) {
             database.deleteById(idNumber);

@@ -16,6 +16,10 @@ public class GetProductsByCategoryService {
 
     @Autowired private JPAProductRepository database;
 
+    public GetProductsByCategoryService(JPAProductRepository database) {
+        this.database = database;
+    }
+
     @Transactional
     public List<Product> getListByCategory(Category category) {
         return StreamSupport

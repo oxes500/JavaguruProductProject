@@ -18,15 +18,20 @@ public class UpdateProductService {
     @Autowired private JPAUserRepository jpaUserRepository;
     @Autowired private JPAProductListRepository jpaProductListRepository;
 
+    public UpdateProductService(JPAProductRepository jpaProductRepository, JPAUserRepository jpaUserRepository, JPAProductListRepository jpaProductListRepository) {
+        this.jpaProductRepository = jpaProductRepository;
+        this.jpaUserRepository = jpaUserRepository;
+        this.jpaProductListRepository = jpaProductListRepository;
+    }
+
     @Transactional
     public UpdateProductResponse updateProduct(Product product) {
 
-        Long id = product.getId();
-        Product productFromDb = jpaProductRepository.findById(id).get();
+        Product productFromDb = jpaProductRepository.findById(product.getId()).get();
         ProductList productList = jpaProductListRepository.findById(productFromDb.getProductList().getId()).get();
         User user = jpaUserRepository.findById(productList.getUser().getId()).get();
 
-        product.setId(id);
+        product.setId(product.getId());
         productList.setUser(user);
         product.setProductList(productList);
         jpaProductRepository.save(product);

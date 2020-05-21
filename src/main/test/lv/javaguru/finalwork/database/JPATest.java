@@ -44,5 +44,4 @@ public class JPATest extends TestCase {
         Long productId = product.getId();
         assertTrue(productRepository.findById(productId).isPresent());
     }
-
 }
